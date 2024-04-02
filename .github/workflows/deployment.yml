@@ -30,7 +30,7 @@ jobs:
         git clone https://github.com/yatharth-gupta/testing_aws_automation.git
         cd testing_aws_automation
         pip install -r req.txt
-        sudo systemctl restart githubtesting.service
+        sudo systemctl restart Archcopilot.service
 
     # - name: Delete the current REPO
     #   run: |
