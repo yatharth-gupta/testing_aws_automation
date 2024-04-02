@@ -20,7 +20,7 @@ jobs:
         INSTANCE: ${{ secrets.INSTANCE }}
 
       run: |
-        openssl aes-256-cbc -d -in archcop.pem.enc -out archcop.pem -k $SECRET_PASSPHRASE
+        openssl aes-256-cbc -d -in archcop.pem.enc -out archcop.pem -k $SECRET_PASSPHRASE -pbkdf2 
         chmod 400 your-key.pem
         ssh -i archcop.pem ubuntu@$INSTANCE 
 
