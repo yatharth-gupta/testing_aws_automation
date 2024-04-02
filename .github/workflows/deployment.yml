@@ -25,7 +25,7 @@ jobs:
         chmod 400 archcop.pem
         mkdir -p ~/.ssh
         echo "${HOST_KEY}" > ~/.ssh/known_hosts
-        ssh -o StrictHostKeyChecking=yes -i archcop.pem ubuntu@$INSTANCE 
+        ssh -i archcop.pem ubuntu@$INSTANCE 
 
     - name: Delete the current REPO
       run: |
