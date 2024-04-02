@@ -18,11 +18,14 @@ jobs:
       env:
         SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
         INSTANCE: ${{ secrets.INSTANCE }}
+        HOST_KEY: ${{ secrets.HOST_KEY }}
 
       run: |
         openssl aes-256-cbc -d -in archcop.pem.enc -out archcop.pem -k $SECRET_PASSPHRASE -pbkdf2 
         chmod 400 archcop.pem
-        ssh -i archcop.pem ubuntu@$INSTANCE 
+        mkdir -p ~/.ssh
+        echo "${EC2_HOST_KEY}" > ~/.ssh/known_hosts
+        ssh -o StrictHostKeyChecking=yes -i archcop.pem ubuntu@$INSTANCE 
 
     - name: Delete the current REPO
       run: |
