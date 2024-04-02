@@ -27,10 +27,10 @@ jobs:
         # echo "${HOST_KEY}" > ~/.ssh/known_hosts
         ssh -o StrictHostKeyChecking=no -i archcop.pem ubuntu@$INSTANCE 
         sudo rm -rf testing_aws_automation
-        git clone https://github.com/yatharth-gupta/testing_aws_automation.git
-        cd testing_aws_automation
-        pip install -r req.txt
-        sudo systemctl restart Archcopilot.service
+        # git clone https://github.com/yatharth-gupta/testing_aws_automation.git
+        # cd testing_aws_automation
+        # pip install -r req.txt
+        # sudo systemctl restart githubtesting.service
 
     # - name: Delete the current REPO
     #   run: |
