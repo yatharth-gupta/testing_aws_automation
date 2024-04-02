@@ -1,0 +1,41 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Decrypt and use SSH key
+      env:
+        SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
+        INSTANCE: ${{ secrets.INSTANCE }}
+
+      run: |
+        openssl aes-256-cbc -d -in archcop.pem.enc -out archcop.pem -k $SECRET_PASSPHRASE
+        chmod 400 your-key.pem
+        ssh -i archcop.pem ubuntu@$INSTANCE 
+
+    - name: Delete the current REPO
+      run: |
+        rm -rf testing_aws_automation
+
+    - name: Clone the REPO
+      run: |
+        git clone https://github.com/yatharth-gupta/testing_aws_automation.git
+
+    - name: Install dependencies
+      run: |
+        cd testing_aws_automation
+        pip install -r requirements.txt
+
+    - name: Restart the server
+      run: |
+        sudo systemctl restart githubtesting.service
