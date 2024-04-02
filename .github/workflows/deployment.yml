@@ -21,7 +21,7 @@ jobs:
 
       run: |
         openssl aes-256-cbc -d -in archcop.pem.enc -out archcop.pem -k $SECRET_PASSPHRASE -pbkdf2 
-        chmod 400 your-key.pem
+        chmod 400 archcop.pem
         ssh -i archcop.pem ubuntu@$INSTANCE 
 
     - name: Delete the current REPO
