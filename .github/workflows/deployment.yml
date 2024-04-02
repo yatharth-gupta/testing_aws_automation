@@ -24,7 +24,7 @@ jobs:
         openssl aes-256-cbc -d -in archcop.pem.enc -out archcop.pem -k $SECRET_PASSPHRASE -pbkdf2 
         chmod 400 archcop.pem
         mkdir -p ~/.ssh
-        echo "${EC2_HOST_KEY}" > ~/.ssh/known_hosts
+        echo "${HOST_KEY}" > ~/.ssh/known_hosts
         ssh -o StrictHostKeyChecking=yes -i archcop.pem ubuntu@$INSTANCE 
 
     - name: Delete the current REPO
