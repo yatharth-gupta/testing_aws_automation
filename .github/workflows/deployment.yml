@@ -38,7 +38,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd testing_aws_automation
-        pip install -r requirements.txt
+        pip install -r req.txt
 
     - name: Restart the server
       run: |
